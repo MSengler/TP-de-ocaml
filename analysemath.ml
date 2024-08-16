@@ -58,3 +58,17 @@ let alldivisor n =
     done;
     l;;
 
+let rec exponentiationRapide x n = match n with
+    |0->1
+    |n when n mod 2 = 0 -> let y = (exponentiationRapide x (n/2)) in y*y
+    |_ -> let y =(exponentiationRapide x (n/2)) in x*y*y;;
+
+
+(*Récursivité croiseé *)
+let rec u n = match n with
+    |0 -> 1.
+    |_ -> (u(n-1) +. v(n-1)) /. 2.
+and v n = match n with 
+    |0 -> 34.
+    |_ -> sqrt( u(n-1) *. v(n-1));;
+
