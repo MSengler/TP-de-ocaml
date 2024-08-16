@@ -116,3 +116,24 @@ let rec tri_fusion l =
         | 1 -> let l1,l2 = diviselist l 0 1 in fusion l1 l2
         | 2 -> let l1,l2 = diviselist l 0 1 in fusion l1 l2
         | _ -> let l1,l2 = diviselist l 0 (n/2) in fusion (tri_fusion l1) (tri_fusion l2);;
+
+(* Fonctions pour faire le tri sélection *)
+let echange i j t =
+    let h = t.(j) in 
+    t.(j) <- t.(i);
+    t.(i) <- h;;
+
+let imin  t i = 
+    let n = Array.length t and m = ref t.(i) and imin = ref i in
+    for j=i+1 to n-1 do 
+        if t.(j)< !m then (m := t.(j); imin := j;)
+    done;
+    !imin;;
+
+let tri_selection t = 
+    for i=0 to (Array.length t - 2) do
+        let j = imin t i in 
+        echange i j t
+    done;
+    t;;
+
